@@ -11,15 +11,24 @@ const wss = new WebSocket.Server({ server });
 
 // WebSocket handling
 wss.on('connection', (ws) => {
+
   console.log('WebSocket client connected');
 
-  ws.on('message', (message) => {
-    console.log('Received:', message.toString());
-  });
+  ws.on('error', console.error);
+  ws.on('message', (data) => {
 
-  ws.send('Hey spring', ()=>{
-    console.log('Message sent to WebSocket client');
+    const parsed = JSON.parse(data.toString());
+    const { sender_id, receiver_id, message } = parsed;
+    console.log(sender_id, receiver_id, message);
+    connection.query('INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)', [sender_id, receiver_id, message], (err, results) => {
+      if (err) {
+        console.error('Database insert error:', err);
+        return;
+      }
+      console.log('Rutva', results.insertId);
+    });
   });
+  ws.send('Rutva');
 });
 
 app.get('/', (req, res) => {
