@@ -11,14 +11,15 @@ const wss = new WebSocket.Server({ server });
 
 // WebSocket handling
 wss.on('connection', (ws) => {
-  console.log('✅ WebSocket client connected');
+  console.log('WebSocket client connected');
 
   ws.on('message', (message) => {
-    console.log('📩 Received:', message.toString());
-    ws.send(`Echo: ${message}`);
+    console.log('Received:', message.toString());
   });
 
-  ws.send('👋 Hello from WebSocket server');
+  ws.send('Hey spring', ()=>{
+    console.log('Message sent to WebSocket client');
+  });
 });
 
 app.get('/', (req, res) => {
