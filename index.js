@@ -5,6 +5,7 @@ require('dotenv').config();
 app.use(express.json());
 const port = process.env.PORT;
 const connection = require('./dbClient');
+const User = require('./models/Users');
 const WebSocket = require('ws');
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -56,12 +57,34 @@ wss.on('connection', (ws) => {
 });
 
 app.get('/', (req, res) => {
-  connection.query('SELECT * FROM users', (err, rows, fields) => {
-    if (err) {
-      return res.status(500).send('Database query failed');
+  const users = User.findAll();
+  users.then((data) => {  
+    res.json(data);
+  }).catch((err) => {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  });
+})
+
+app.post("/login", (req, res)=>{
+  const {username, password} = req.body;
+  console.log("Username:", username, "Password:", password);
+  const user = User.findOne({
+    where: {
+      username: username,
+      password_hash: password
     }
-    res.send(rows);
-  })
+  });
+  user.then((data) => {
+    if (data) {
+      res.json({ message: "Login successful", user: data });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  }).catch((err) => {
+    console.error('Error during login:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  });
 })
 
 server.listen(port, () => {

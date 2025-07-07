@@ -24,7 +24,7 @@ CREATE TABLE messages (
 
 INSERT INTO users (username, email, password_hash, avatar_url, status, last_seen)
 VALUES
-  ('Virat', 'virat@example.com', '$2b$10$hashedpassword1', NULL, 'offline', NOW()),
-  ('Rohit', 'rohit@example.com', '$2b$10$hashedpassword2', NULL, 'offline', NOW()),
-  ('Sachin', 'sachin@example.com', '$2b$10$hashedpassword3', NULL, 'offline', NOW()),
-  ('Jaspreet', 'jaspreet@example.com', '$2b$10$hashedpassword4', NULL, 'offline', NOW());
+  ('Virat', 'virat@example.com', 'virat@123', NULL, 'offline', NOW()),
+  ('Rohit', 'rohit@example.com', 'rohit@123', NULL, 'offline', NOW()),
+  ('Sachin', 'sachin@example.com', 'rohit@123', NULL, 'offline', NOW()),
+  ('Jaspreet', 'jaspreet@example.com', 'jaspreet@123', NULL, 'offline', NOW());
