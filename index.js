@@ -4,7 +4,7 @@ const app = express();
 require('dotenv').config();
 app.use(express.json());
 const port = process.env.PORT;
-const connection = require('./dbClient');
+const connection = require('./config/dbClient');
 const User = require('./models/Users');
 const WebSocket = require('ws');
 const server = http.createServer(app);
@@ -66,30 +66,11 @@ app.get('/', (req, res) => {
   });
 })
 
-app.post("/login", (req, res)=>{
-  const {username, password} = req.body;
-  console.log("Username:", username, "Password:", password);
-  const user = User.findOne({
-    where: {
-      username: username,
-      password_hash: password
-    }
-  });
-  user.then((data) => {
-    if (data) {
-      res.json({ message: "Login successful", user: data });
-    } else {
-      res.status(401).json({ message: "Invalid credentials" });
-    }
-  }).catch((err) => {
-    console.error('Error during login:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  });
-})
-
 server.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
+
+module.exports = app;
 
 
 
