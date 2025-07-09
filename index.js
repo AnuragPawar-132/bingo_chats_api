@@ -6,6 +6,8 @@ app.use(express.json());
 const port = process.env.PORT;
 const connection = require('./config/dbClient');
 const User = require('./models/Users');
+const authRoutes = require("./routes/authRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
 const WebSocket = require('ws');
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -56,24 +58,15 @@ wss.on('connection', (ws) => {
 
 });
 
-app.get('/', (req, res) => {
-  const users = User.findAll();
-  users.then((data) => {  
-    res.json(data);
-  }).catch((err) => {
-    console.error('Error fetching users:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  });
+app.get("/", (req, res)=>{
+  res.send("Welcome to bingo chat api")
 })
+app.use('/auth/', authRoutes);
+app.use('/api/', userRoutes);
 
 server.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
-
-module.exports = app;
-
-
-
 
 
 

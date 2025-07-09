@@ -1,7 +1,6 @@
-const app = require("../index");
-const User = require('../models/Users');
+import User from "../models/Users.js";
 
-app.post("/login", (req, res)=>{
+export const login =  (req, res)=>{
   const {username, password} = req.body;
   console.log("Username:", username, "Password:", password);
   const user = User.findOne({
@@ -20,4 +19,4 @@ app.post("/login", (req, res)=>{
     console.error('Error during login:', err);
     res.status(500).json({ error: 'Internal Server Error' });
   });
-})
+}
