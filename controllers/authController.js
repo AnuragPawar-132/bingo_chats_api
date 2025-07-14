@@ -1,10 +1,10 @@
 import User from "../models/Users.js";
 
 export const login =  (req, res)=>{
-  const {username, password} = req.body;
+  const {email, password} = req.body;
   const user = User.findOne({
     where: {
-      username: username,
+      email: email,
       password_hash: password
     }
   });
