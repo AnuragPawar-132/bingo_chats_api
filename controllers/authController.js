@@ -13,7 +13,6 @@ export const login = (req, res) => {
       password_hash: password
     }
   });
-
   user.then((data) => {
     if (data) {
       const token = jwt.sign({
