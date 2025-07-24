@@ -9,7 +9,7 @@ app.use(express.json());
 const port = process.env.PORT;
 const authRoutes = require("./routes/authRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
-const conversationRoutes = require("./routes/coonversationRouter.js")
+const conversationRoutes = require("./routes/conversationRouter.js")
 const { hangout } = require('./controllers/socketController.js');
 
 const server = http.createServer(app);

@@ -5,10 +5,12 @@ const conversationResponse = (messages) => {
       id: msg.id,
       senderId: msg.sender_id,
       receiverId: msg.receiver_id,
-      message: msg.message,
+      message: msg.content,
       timestamp: msg.timestamp
     }))
   };
 };
 
-module.exports = conversationResponse;
+module.exports = {
+    conversationResponse
+};
