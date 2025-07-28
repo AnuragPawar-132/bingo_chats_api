@@ -28,3 +28,16 @@ VALUES
   ('Rohit', 'rohit@example.com', 'rohit@123', NULL, 'offline', NOW()),
   ('Sachin', 'sachin@example.com', 'rohit@123', NULL, 'offline', NOW()),
   ('Jaspreet', 'jaspreet@example.com', 'jaspreet@123', NULL, 'offline', NOW());
+
+
+CREATE TABLE friends (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    friend_id INT NOT NULL,
+    status ENUM('pending', 'accepted', 'blocked') DEFAULT 'pending',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY (user_id, friend_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (friend_id) REFERENCES users(id) ON DELETE CASCADE
+);
