@@ -1,6 +1,7 @@
-import User from "../models/Users.js";
+import { User } from "../entities/Users.js";
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
+import { userResponse } from "../models/UserResponseModel.js";
 dotenv.config();
 const secretKey = process.env.SECRETKEY;
 
@@ -12,7 +13,8 @@ export const getAllUsers = (req, res) => {
     } else {
       const users = User.findAll();
       users.then((data) => {
-        res.json(data);
+        let final = userResponse(data)
+        res.json(final);
       }).catch((err) => {
         console.error('Error fetching users:', err);
         res.status(500).json({ error: 'Internal Server Error' });

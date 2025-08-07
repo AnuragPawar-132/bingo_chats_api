@@ -1,12 +1,11 @@
-const { Sequelize } = require('sequelize');
+import Sequelize from 'sequelize';
 
-const connection = new Sequelize('bingo', 'root', 'password', {
+export const sequelize = new Sequelize('bingo', 'root', 'password', {
   host: 'localhost',
   dialect: 'mysql',
   logging: false 
 });
 
-module.exports = connection;
 
 // const mysql = require('mysql')
 // const connection = mysql.createConnection({

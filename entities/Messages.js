@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/dbClient');
+import  { DataTypes } from 'sequelize';
+import  { sequelize } from "../config/dbClient.js"
 
-const Message = sequelize.define('Message', {
+export const Message = sequelize.define('Message', {
 
   sender_id: {type: DataTypes.STRING, allowNull: false},
 
@@ -16,4 +16,3 @@ const Message = sequelize.define('Message', {
     timestamps: false
 });
 
-module.exports = Message;

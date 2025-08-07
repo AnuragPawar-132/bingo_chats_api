@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/Users.js";
+import { User } from "../entities/Users.js";
 import { errorLoginResponse, successLoginResponse } from "../models/LoginResponsemodel.js";
 import dotenv from 'dotenv';
 dotenv.config();

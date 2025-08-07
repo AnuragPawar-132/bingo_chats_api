@@ -1,4 +1,4 @@
-import Message from "../models/Messages.js";
+import {Message} from "../entities/Messages.js";
 const clients = new Map();
 
 export const hangout = (ws) => {
