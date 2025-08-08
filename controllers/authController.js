@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { User } from "../entities/Users.js";
-import { errorLoginResponse, successLoginResponse } from "../models/LoginResponsemodel.js";
 import dotenv from 'dotenv';
 dotenv.config();
+import { User } from "../entities/Users.js";
+import { errorLoginResponse, successLoginResponse } from "../models/LoginResponsemodel.js";
 const secretKey = process.env.SECRETKEY;
 
 export const login = (req, res) => {

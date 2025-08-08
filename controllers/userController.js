@@ -1,8 +1,8 @@
-import { User } from "../entities/Users.js";
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
-import { userResponse } from "../models/UserResponseModel.js";
 dotenv.config();
+import { User } from "../entities/Users.js";
+import { userResponse } from "../models/UserResponseModel.js";
 const secretKey = process.env.SECRETKEY;
 
 export const getAllUsers = (req, res) => {

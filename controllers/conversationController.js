@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import {Message} from '../entities/Messages.js';
+import { Op } from 'sequelize';
+import { Message } from '../entities/Messages.js';
 import { conversationResponse } from '../models/ConversationModel.js';
 import { errorLoginResponse } from '../models/LoginResponsemodel.js'; // if you want consistent error handling
-import { Op } from 'sequelize';
 const secretKey = process.env.SECRETKEY;
 
 export const getConversationHistory = async (req, res) => {
