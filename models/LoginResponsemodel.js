@@ -1,4 +1,4 @@
-const successLoginResponse = (data, accessToken) => {
+export const successLoginResponse = (data, accessToken) => {
     return {
         success: true,
         user: {
@@ -10,14 +10,10 @@ const successLoginResponse = (data, accessToken) => {
     };
 };
 
-const errorLoginResponse = (error) => {
+export const errorLoginResponse = (error) => {
     return {
         success: false,
         error: error
     };
 };
 
-module.exports = {
-    successLoginResponse,
-    errorLoginResponse
-};

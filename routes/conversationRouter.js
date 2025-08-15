@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const conversationController = require("../controllers/conversationController");
+import { getConversationHistory } from '../controllers/conversationController.js'
 
-router.get('/convs', conversationController.getConversationHistory);
-module.exports = router;
+router.get('/convs', getConversationHistory);
+
+export default router;

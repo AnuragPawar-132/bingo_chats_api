@@ -6,7 +6,7 @@ export const userResponse = (list) => {
             success: true,
             users: list.map((ele, int)=>({
                 id: ele.id,
-                username: ele.unsername,
+                username: ele.username,
                 email: ele.email,
                 avatar_url: ele.avatar_url,
                 status: ele.status,

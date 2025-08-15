@@ -1,19 +1,21 @@
-const express = require('express');
-const http = require('http');
-const WebSocket = require('ws');
-var cors = require('cors')
+import express from "express";
+import http from 'http';
+import { WebSocketServer } from "ws";
+import cors from 'cors';
 const app = express();
-app.use(cors())
-require('dotenv').config();
+app.use(cors());
+import dotenv from 'dotenv';
+dotenv.config()
 app.use(express.json());
 const port = process.env.PORT;
-const authRoutes = require("./routes/authRoutes.js");
-const userRoutes = require("./routes/userRoutes.js");
-const conversationRoutes = require("./routes/conversationRouter.js")
-const { hangout } = require('./controllers/socketController.js');
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import conversationRoutes from "./routes/conversationRouter.js"
+import { hangout } from "./controllers/socketController.js";
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocketServer({ server });
+
 
 wss.on('connection', hangout);
 
